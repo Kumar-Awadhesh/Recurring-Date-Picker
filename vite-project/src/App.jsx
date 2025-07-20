@@ -124,8 +124,8 @@ function RecurringDatePicker() {
           </div>
         </div>
 
+          <div className="global-container"><h2>Recurring Date Preview:</h2></div>
         <div className="date-preview-containner global-container">
-          <h2>Date Preview:</h2>
           {
             recurrencedate.map((date, index) => (
               <div key={index} className="date-card">
