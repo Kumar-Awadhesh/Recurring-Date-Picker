@@ -40,9 +40,12 @@ function RecurringDatePicker() {
       }
       //checking if recurrence day is choosen as weekly, then push current date to the dates array.
       else if(recurrence === 'weekly'){
-        dates.push(currentDate);
+        //checking the dayOfWeek array is empty or selected day already exist.
+        if (dayOfWeek.length === 0 || dayOfWeek.includes(currentDate.getDay())) {
+          dates.push(new Date(currentDate));
+        }
         //add weeks with interval.
-        currentDate = addWeeks(currentDate, interval)
+        currentDate = addDays(currentDate, interval)
       }
       //checking if recurrence day is choosen as mothly, then push current date to the dates array.
       else if(recurrence === 'monthly'){
@@ -92,10 +95,10 @@ function RecurringDatePicker() {
             recurrence === "weekly" &&
             <div className="day-container global-container">
               {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, index)=>(
-                <label key={index}>
+                <label key={day}>
                   <input type="checkbox"
-                   checked={dayOfWeek.includes(day)}
-                   onChange={()=> dayOfWeekToggle(day)}
+                   checked={dayOfWeek.includes(index)}
+                   onChange={()=> dayOfWeekToggle(index)}
                   />
                   {day}
                 </label>
